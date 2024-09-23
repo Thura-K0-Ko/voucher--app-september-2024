@@ -1,5 +1,40 @@
- {
-    "products":[
-        
-    ]
- }
+{
+  "products": [
+    {
+      "id": 1,
+      "product_name": "Web Design Basic",
+      "price": 150,
+      "created_at": "2024-09-14T12:13:45Z"
+    },
+    {
+      "id": 2,
+      "product_name": "SEO Optimization",
+      "price": 200,
+      "created_at": "2024-09-13T05:00:00-07:00"
+    },
+    {
+      "product_name": "web foundation ",
+      "price": "400",
+      "created_at": "2024-09-22T22:23:49.888Z",
+      "id": 3
+    },
+    {
+      "product_name": "apple",
+      "price": "333",
+      "created_at": "2024-09-22T22:29:09.298Z",
+      "id": 4
+    },
+    {
+      "product_name": "foundation ",
+      "price": "3434",
+      "created_at": "2024-09-22T22:31:18.223Z",
+      "id": 5
+    },
+    {
+      "product_name": "dasfads",
+      "price": "333",
+      "created_at": "2024-09-22T22:31:35.359Z",
+      "id": 6
+    }
+  ]
+}
