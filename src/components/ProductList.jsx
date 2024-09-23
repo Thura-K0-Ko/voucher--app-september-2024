@@ -1,10 +1,11 @@
 import React from "react";
 import { HiSearch } from "react-icons/hi";
-import { HiOutlinePencil, HiOutlineTrash, HiPlus } from "react-icons/hi2";
+import {  HiPlus } from "react-icons/hi2";
 import useSWR from "swr";
 import ProductRow from "./ProductRow";
 import ProductRowSkeletonLoader from "./ProductRowSkeletonLoader";
 import { Link } from "react-router-dom";
+import EmptyProduct from "./EmptyProduct";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const ProductList = () => {
@@ -62,12 +63,12 @@ const ProductList = () => {
           <tbody>
             {isLoading ? (
               <ProductRowSkeletonLoader />
+            ) : data.length > 0 ? (
+              data.map((product) => (
+                <ProductRow key={product.id} product={product} />
+              ))
             ) : (
-              <>
-                {data.map((product) => (
-                  <ProductRow key={product.id} product={product} />
-                ))}
-              </>
+              <EmptyProduct />
             )}
           </tbody>
         </table>
