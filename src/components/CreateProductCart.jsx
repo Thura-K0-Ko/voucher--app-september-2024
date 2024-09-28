@@ -37,7 +37,7 @@ const CreateProductCart = () => {
     mutate(import.meta.env.VITE_API_URL + `/products`);
     reset();
     setSaving(false);
-    console.log(data);
+    // console.log(data);
   };
   return (
     <div className=" w-full sm:w-2/3 md:w-1/2">
@@ -48,7 +48,7 @@ const CreateProductCart = () => {
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/* ==================form input================= */}
+        {/* ==================product name input================= */}
         <div className="mb-5">
           <label
             className={`block mb-2 text-sm font-medium   ${
@@ -64,7 +64,7 @@ const CreateProductCart = () => {
             {...register("product_name", {
               required: true,
               minLength: 3,
-              maxLength: 20,
+              maxLength: 30,
             })}
             className={`bg-gray-50 border ${
               errors.product_name
@@ -105,7 +105,7 @@ const CreateProductCart = () => {
             {...register("price", {
               required: true,
               min: 100,
-              max: 5000,
+              max: 10000,
             })}
             className={`bg-gray-50 border ${
               errors.price
@@ -139,9 +139,10 @@ const CreateProductCart = () => {
               {...register("all_correct", { required: true })}
               type="checkbox"
               className="w-4 h-4 border border-gray-300 cursor-pointer rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+              
             />
             {errors.all_correct && (
-              <p className="text-red-500 text-xs">All field are required</p>
+              <p className=" ps-2 text-red-500 text-xs">Check this box</p>
             )}
           </div>
           <label

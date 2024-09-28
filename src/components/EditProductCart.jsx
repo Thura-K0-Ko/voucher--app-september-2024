@@ -5,6 +5,7 @@ import useSWR, { useSWRConfig } from "swr";
 import { tailChase } from "ldrs";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import EditProductCartSkeletonLoader from "./EditProductCartSkeletonLoader";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const EditProductCart = () => {
   const {
@@ -47,7 +48,7 @@ const EditProductCart = () => {
     mutate(import.meta.env.VITE_API_URL + `/products`);
 
     setSaving(false);
-    toast.success("Product Update successful")
+    toast.success("Product Update successful");
     console.log(data);
   };
   return (
@@ -59,7 +60,7 @@ const EditProductCart = () => {
       </p>
 
       {isLoading ? (
-        "loading"
+        <EditProductCartSkeletonLoader />
       ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* ==================form input================= */}
@@ -142,7 +143,7 @@ const EditProductCart = () => {
             {errors.price?.type === "max" && (
               <p className="text-red-500 text-xs">
                 {" "}
-                Product Price must be less then 5000
+                Product Price must be less then 10000
               </p>
             )}
           </div>
@@ -157,7 +158,7 @@ const EditProductCart = () => {
                 className="w-4 h-4 border border-gray-300 cursor-pointer rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
               />
               {errors.all_correct && (
-                <p className="text-red-500 text-xs">All field are required</p>
+                <p className=" ps-2 text-red-500 text-xs">Check this box</p>
               )}
             </div>
             <label
