@@ -78,6 +78,7 @@ const VoucherTableRow = ({
         <span className="record-cost">{cost}</span>
       </td>
       <td className=" py-4 text-center">
+        
         <button
           onClick={handleRemoveBtn}
           className="record-del group-hover:opacity-100 group-hover:pointer-events-auto duration-200 pointer-events-none opacity-0  active:scale-75 bg-blue-100 p-2 rounded-lg"

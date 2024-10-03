@@ -21,7 +21,7 @@ const EditProductCartSkeletonLoader = () => {
         <div className="ml-2 h-4 bg-gray-200 rounded w-1/2"></div>
       </div>
 
-      {/* Skeleton for Button */}
+      {/* Skeleton for Button */}                                                                                                                               
       <div className="flex gap-2 justify-start">
         <div className="h-10 w-20 bg-gray-300 rounded"></div>
         <div className="h-10 w-32 bg-gray-300 rounded"></div>

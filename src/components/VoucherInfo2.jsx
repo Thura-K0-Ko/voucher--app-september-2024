@@ -25,8 +25,12 @@ const VoucherInfo2 = () => {
   const onSubmit = async (data) => {
     const total = records.reduce((pv, cv) => pv + cv.cost, 0);
 
-    const vat = (total * 0.07).toFixed(2);
-    const netTotal = total + vat;
+    const vat = total * 0.07;
+    const netTotal = parseInt(total) + parseInt(vat);
+
+    // console.log(vat, netTotal, total);
+    // console.log(typeof vat, typeof netTotal, typeof total);
+
     setSaving(true);
     leapfrog.register();
 
@@ -35,17 +39,21 @@ const VoucherInfo2 = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...data, records, total, vat, netTotal }),
+      body: JSON.stringify({ ...data, records, vat, total, netTotal }),
     });
+    const json = await res.json();
+    console.log(json);
 
-    navigate("/voucher");
+    if (data.redirect_to_detail) {
+      navigate(`/voucher/detail/${json.id}`);
+    }
 
     mutate(import.meta.env.VITE_API_URL + `/vouchers`);
     toast.success("Voucher create successfully");
     reset();
     resetRecord();
     setSaving(false);
-    // console.log(data);
+    console.log(data);
   };
 
   const generateInvoiceNumber = () => {
@@ -207,11 +215,33 @@ const VoucherInfo2 = () => {
       <SaleForm2 />
       <VoucherTable2 />
 
-      <div className="flex justify-end gap-2 items-center mt-5">
+      <div className="flex flex-col justify-end gap-3 items-end mt-5">
         {/* ==================form sure checkbox================= */}
 
         <div className="flex items-start">
           <div className="flex items-center h-5">
+            <label
+              htmlFor="redirect_to_detail"
+              className="me-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer"
+            >
+              Redirect to voucher detail
+            </label>
+            <input
+              {...register("redirect_to_detail")}
+              id="redirect_to_detail"
+              type="checkbox"
+              className="w-4 h-4 border border-gray-300 cursor-pointer rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+            />
+          </div>
+        </div>
+        <div className="flex items-start">
+          <div className="flex items-center h-5">
+            <label
+              htmlFor="remember"
+              className="me-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer"
+            >
+              Make sure all field are correct
+            </label>
             <input
               id="remember"
               {...register("all_correct", { required: true })}
@@ -222,12 +252,6 @@ const VoucherInfo2 = () => {
               <p className="ps-2 text-red-500 text-xs">Check this box</p>
             )}
           </div>
-          <label
-            htmlFor="remember"
-            className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer"
-          >
-            Make sure all field are correct
-          </label>
         </div>
         <button
           form="voucher"

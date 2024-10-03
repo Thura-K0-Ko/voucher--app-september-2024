@@ -5,7 +5,11 @@ waveform.register();
 
 // Default values shown
 
-import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi2";
+import {
+  HiOutlineArrowRight,
+  HiOutlinePencil,
+  HiOutlineTrash,
+} from "react-icons/hi2";
 import { useSWRConfig } from "swr";
 
 import toast from "react-hot-toast";
@@ -66,7 +70,7 @@ const VoucherListRow = ({
             <button
               onClick={handleDelProduct}
               type="button"
-              className=" size-8 flex items-center justify-center text-sm font-medium text-red-500 bg-transparent border border-gray-900 rounded-lg hover:scale-105 hover:text-blue-700 focus:z-10 focus:ring-2  dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+              className=" size-8 flex items-center justify-center text-sm font-medium text-red-500 bg-transparent border  border-gray-900 rounded-s-lg hover:scale-105 hover:text-blue-700 focus:z-10 focus:ring-2  dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
             >
               {isDeleting ? (
                 <l-waveform
@@ -79,6 +83,22 @@ const VoucherListRow = ({
                 <HiOutlineTrash />
               )}
             </button>
+            <Link
+              to={`/voucher/detail/${id}`}
+              type="button"
+              className=" size-8 flex items-center justify-center text-sm font-medium bg-transparent border  border-gray-900 rounded-e-lg hover:scale-105 hover:text-blue-700 focus:z-10 focus:ring-2  dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+            >
+              {isDeleting ? (
+                <l-waveform
+                  size="12"
+                  stroke="1"
+                  speed="1"
+                  color="blue"
+                ></l-waveform>
+              ) : (
+                <HiOutlineArrowRight />
+              )}
+            </Link>
           </div>
         </td>
       </tr>

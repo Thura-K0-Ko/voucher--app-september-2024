@@ -13,6 +13,7 @@ const ProductList = () => {
     import.meta.env.VITE_API_URL + `/products`,
     fetcher
   );
+  // console.log(data)
 
   return (
     <div className="">

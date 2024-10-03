@@ -8,7 +8,10 @@ const VoucherTable2 = () => {
   const total = records.reduce((pv, cv) => pv + cv.cost, 0);
 
   const vat = total * 0.07;
-  const netTotal = total + vat;
+  const netTotal = parseInt(total) + parseInt(vat);
+
+  // console.log(typeof(total),typeof(vat),typeof(netTotal))
+  // console.log(total,vat,netTotal)
   return (
     <table className="w-full mt-5 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
